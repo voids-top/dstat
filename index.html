@@ -79,13 +79,20 @@
 
             info.innerText = "Capturing requests from https://dstat.voids.top";
 
-            setInterval(async () => {
-                var response = await fetch("https://dstat.voids.top/stats");
-                response = await response.text();
-                let requests = Number(response);
-                let time = new Date().getTime();
-                chart.series[0].addPoint([time, requests], true, chart.series[0].points.length > 60);
-            }, 1000);
+            const getStats = () => {
+                setTimeout(async () => {
+                    var response = await fetch("https://dstat.voids.top/stats");
+                    response = await response.text();
+                    let requests = Number(response);
+                    let time = new Date().getTime();
+                    chart.series[0].addPoint([time, requests], true, chart.series[0].points.length > 60);
+                    getStats();
+                }, 1000);
+            }
+            getStats();
+}
+
+polling()
         }
     </script>
 </body>
