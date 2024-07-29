@@ -79,7 +79,7 @@
 
             info.innerText = "Capturing requests from https://dstat.voids.top";
 
-            let ws = new WebSocket("wss://dstat-status.voids.top/ws");
+            let ws = new WebSocket("wss://dstat-status.voids.top/");
 
             ws.onmessage = (event) => {
                 let requests = Number(event.data);
