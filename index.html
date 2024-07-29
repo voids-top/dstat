@@ -81,7 +81,7 @@
 
             setInterval(async () => {
                 var response = await fetch("https://dstat.voids.top/stats");
-                response = await response.body();
+                response = await response.text();
                 let requests = Number(response);
                 let time = new Date().getTime();
                 chart.series[0].addPoint([time, requests], true, chart.series[0].points.length > 60);
