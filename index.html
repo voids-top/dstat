@@ -79,14 +79,13 @@
 
             info.innerText = "Capturing requests from https://dstat.voids.top";
 
-            let ws = new WebSocket("wss://dstat-status.voids.top/");
-
-            ws.onmessage = (event) => {
-                let requests = Number(event.data);
+            setInterval(async () => {
+                var response = await fetch("https://dstat.voids.top/stats");
+                response = await response.body();
+                let requests = Number(response);
                 let time = new Date().getTime();
                 chart.series[0].addPoint([time, requests], true, chart.series[0].points.length > 60);
-            }
-
+            }, 1000);
         }
     </script>
 </body>
