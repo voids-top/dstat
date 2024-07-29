@@ -81,9 +81,13 @@
 
             const getStats = () => {
                 setTimeout(async () => {
-                    var response = await fetch("https://dstat.voids.top/stats");
-                    response = await response.text();
-                    let requests = Number(response);
+                    try {
+                        var response = await fetch("https://dstat.voids.top/stats");
+                        response = await response.text();
+                        let requests = Number(response);
+                    } catch (err) {
+                        let requests = Number(-1);
+                    }
                     let time = new Date().getTime();
                     chart.series[0].addPoint([time, requests], true, chart.series[0].points.length > 60);
                     getStats();
