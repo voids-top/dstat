@@ -73,9 +73,9 @@
                 }]
             });
 
-            info.innerText = "Capturing requests from " + location.host + "/dstat";
+            info.innerText = "Capturing requests from https://dstat.voids.top";
 
-            let ws = new WebSocket("ws://" + location.host + "/ws");
+            let ws = new WebSocket("ws://dstat-status.voids.top/ws");
 
             ws.onmessage = (event) => {
                 let requests = Number(event.data);
